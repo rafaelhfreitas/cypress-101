@@ -91,8 +91,23 @@ describe('Submitting an image with valid inputs using enter key', () => {
   })
 
 
-  it('When I enter "Alien BR" in the title field', () => {})
-  it('Then I should see a check icon in the title field', () => {})
+  it(`When I enter ${input.title} in the title field`, () => {
+    registerForm.typeTitle(input.title)
+
+  })
+
+  it(`Then I enter "${input.url}" in the URL field`, () => {
+    registerForm.typeUrl(input.url)
+  })
+
+  
+  it('Then I should see a check icon in the title field', () => {
+    registerForm.elements.titleInput().should(([$input]) => {
+      const styles = window.getComputedStyle($input);
+      const border = styles.getPropertyValue('border-right-color')
+      assert.strictEqual(border, colors.success)
+    })
+  })
   it('When I enter "https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg" in the URL field', () => {})
   it('Then I should see a check icon in the imageUrl field', () => {})
   it('Then I can hit enter to submit the form', () => {})
